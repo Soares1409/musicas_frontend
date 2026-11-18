@@ -11,7 +11,24 @@ const botaoCadastrar = document.getElementById("botaoCadastrar")
 botaoCadastrar.addEventListener("click", cadastrarMusica)
 
 async function cadastrarMusica() {
-    
+    if (
+        inputTitulo.value === "" ||
+        inputArtista.value === "" ||
+        inputGenero.value === "" ||
+        inputAno.value === "" ||
+        inputDuracao.value === ""
+    ) {
+        alert("Preencha todos os campos!")
+        return
+    }
+
+    const musica = {
+        titulo: inputTitulo.value,
+        artista: inputArtista.value,
+        genero: inputGenero.value,
+        ano: inputAno.valueAsNumber,
+        duracao: inputDuracao.valueAsNumber
+    }
 
     const resposta = await fetch(`${urlBackend}/cadastrar`, {
         method: "POST",
